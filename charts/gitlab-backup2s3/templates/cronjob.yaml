@@ -1,0 +1,62 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "gitlab-backup2s3.fullname" . }}
+  labels:
+    {{- include "gitlab-backup2s3.labels" . | nindent 4 }}
+    {{- with .Values.additionalLabels -}}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- with .Values.additionalAnnotations -}}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+
+spec:
+  schedule: {{ toYaml .Values.schedule }}
+  suspend: {{ toYaml .Values.suspend }}
+  concurrencyPolicy: {{ toYaml .Values.concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ toYaml .Values.failedJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      backoffLimit: {{ toYaml .Values.backoffLimit }}
+      template:
+        metadata:
+          labels:
+            {{- include "gitlab-backup2s3.selectorLabels" . | nindent 12 }}
+        spec:
+          restartPolicy: {{ .Values.restartPolicy }}
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "gitlab-backup2s3.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              envFrom:
+              {{- range .Values.additionalEnvFrom }}
+              - {{- . | toYaml | nindent 16 }}
+              {{- end }}
+              - configMapRef:
+                  name: {{ include "gitlab-backup2s3.fullname" . }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}

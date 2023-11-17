@@ -1,0 +1,101 @@
+# Declare variables to be passed into your templates.
+# -- additional deployment labels (will be merged with the default labels)
+additionalLabels: {}
+# additionalLabels:
+#   exposed: "true"
+
+# -- additional annotations
+additionalAnnotations: {}
+
+image:
+  # -- image repository
+  repository: sgaunet/gitlab-backup2s3
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- image pull secrets
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+resources: 
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+configuration:
+  # -- key to encrypt archive ([gocrypt](https://github.com/sgaunet/gocrypt) is used to encrypt archives)
+  GOCRYPT_KEY: ""
+  # -- if GOCRYPT_KEY is setup, set it to: gocrypt enc \-\-i %INPUTFILE%
+  POSTBACKUP: ""
+  # -- GITLAB_TOKEN is mandatory
+  GITLAB_TOKEN: ""
+  # -- GITLAB_URI (if the endpoint differs from https://gitlab.com)
+  GITALB_URI: ""
+  # -- gitlab projet id to export
+  GITLABPROJECTID: ""
+  # -- gitlab group id to export (will export all projects in the group)
+  GITLABGROUPID: ""
+  # -- info,warn,error or debug
+  DEBUGLEVEL: "info"
+  TMPDIR: "/tmp"
+  # -- if you want to backup to a local path
+  LOCALPATH: ""
+  # -- Example https://s3.eu-west-3.amazonaws.com or http://localhost:9090 for a local minio instance
+  S3ENDPOINT: ""
+  # -- Example: eu-west-3
+  S3REGION: ""
+  # -- Example: mybucket
+  S3BUCKETNAME: ""
+  # -- Example: /my/path
+  S3BUCKETPATH: ""
+  # -- not mandatory if you associate an IAM role to the pod or ec2
+  AWS_SECRET_ACCESS_KEY: ""
+  AWS_ACCESS_KEY_ID: ""
+
+# -- additional configmap or secret. 
+additionalEnvFrom: []
+# - configMapRef:
+#     name: common-configmap1
+# -- cronjob schedule
+schedule: "00 01 1 * *"
+# -- cronjob concurrencyPolicy
+concurrencyPolicy: "Forbid"
+# -- cronjob failedJobsHistoryLimit
+failedJobsHistoryLimit: 10
+# -- cronjob successfulJobsHistoryLimit
+successfulJobsHistoryLimit: 3
+# -- cronjob suspend
+suspend: False
+# -- cronjob restartPolicy
+restartPolicy: "OnFailure"
+# -- cronjob backoffLimit
+backoffLimit: 2
