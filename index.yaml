@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   gitlab-backup2s3:
   - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-06-21T15:20:39.456966989Z"
+    description: A Helm chart to deploy gitlab-backup2s3
+    digest: 83539c0ff9c0c45700d6c5ad36ab100d809371cda3d1dba6d5ae7b53af398941
+    icon: view-source:https://raw.githubusercontent.com/sgaunet/helmchart-helper/main/ico/helm.ico
+    name: gitlab-backup2s3
+    type: application
+    urls:
+    - https://github.com/sgaunet/helm-gitlab-backup2s3/releases/download/gitlab-backup2s3-0.1.2/gitlab-backup2s3-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.1.1
     created: "2023-12-11T20:08:23.575996735Z"
     description: A Helm chart to deploy gitlab-backup2s3
@@ -23,4 +34,4 @@ entries:
     urls:
     - https://github.com/sgaunet/helm-gitlab-backup2s3/releases/download/gitlab-backup2s3-0.1.0/gitlab-backup2s3-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-11T20:08:23.576008336Z"
+generated: "2024-06-21T15:20:39.456974343Z"
