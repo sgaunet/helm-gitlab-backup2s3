@@ -1,3 +1,6 @@
+[![GitHub release](https://img.shields.io/github/release/sgaunet/helm-gitlab-backup2s3.svg)](https://github.com/sgaunet/helm-gitlab-backup2s3/releases/latest)
+![GitHub Downloads](https://img.shields.io/github/downloads/sgaunet/helm-gitlab-backup2s3/total)
+
 # helm-gitlab-backup2s3
 
 ```
