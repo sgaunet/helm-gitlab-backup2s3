@@ -1,6 +1,6 @@
 # gitlab-backup2s3
 
-![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.0](https://img.shields.io/badge/AppVersion-1.9.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 A Helm chart to deploy gitlab-backup2s3
 
@@ -32,7 +32,7 @@ A Helm chart to deploy gitlab-backup2s3
 | failedJobsHistoryLimit | int | `10` | cronjob failedJobsHistoryLimit |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"sgaunet/gitlab-backup2s3"` | image repository |
+| image.repository | string | `"ghcr.io/sgaunet/gitlab-backup2s3"` | image repository |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | image pull secrets |
 | nameOverride | string | `""` |  |

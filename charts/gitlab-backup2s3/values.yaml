@@ -9,7 +9,7 @@ additionalAnnotations: {}
 
 image:
   # -- image repository
-  repository: sgaunet/gitlab-backup2s3
+  repository: ghcr.io/sgaunet/gitlab-backup2s3
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
