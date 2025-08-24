@@ -1,6 +1,6 @@
 # gitlab-backup2s3
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.0](https://img.shields.io/badge/AppVersion-2.1.0-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square)
 
 A Helm chart to deploy gitlab-backup2s3
 
@@ -17,6 +17,7 @@ A Helm chart to deploy gitlab-backup2s3
 | configuration.AWS_ACCESS_KEY_ID | string | `""` |  |
 | configuration.AWS_SECRET_ACCESS_KEY | string | `""` | not mandatory if you associate an IAM role to the pod or ec2 |
 | configuration.DEBUGLEVEL | string | `"info"` | info,warn,error or debug |
+| configuration.EXPORT_TIMEOUT_MIN | string | `"10"` | default export timeout in minutes |
 | configuration.GITALB_URI | string | `""` | GITLAB_URI (if the endpoint differs from https://gitlab.com) |
 | configuration.GITLABGROUPID | string | `""` | gitlab group id to export (will export all projects in the group) |
 | configuration.GITLABPROJECTID | string | `""` | gitlab projet id to export |

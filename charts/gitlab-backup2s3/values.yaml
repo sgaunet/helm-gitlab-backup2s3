@@ -80,6 +80,8 @@ configuration:
   # -- not mandatory if you associate an IAM role to the pod or ec2
   AWS_SECRET_ACCESS_KEY: ""
   AWS_ACCESS_KEY_ID: ""
+  # -- default export timeout in minutes
+  EXPORT_TIMEOUT_MIN: "10"
 
 # -- additional configmap or secret. 
 additionalEnvFrom: []
