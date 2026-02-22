@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   gitlab-backup2s3:
   - apiVersion: v2
+    appVersion: 2.3.4
+    created: "2026-02-22T21:18:50.731065438Z"
+    description: Kubernetes CronJob for GitLab backups to S3-compatible storage
+    digest: 403a26c7f6de6ed0b828e33682c2a5da8c3dc2305aeb60d98b661cc725b2b370
+    icon: view-source:https://raw.githubusercontent.com/sgaunet/helmchart-helper/main/ico/helm.ico
+    name: gitlab-backup2s3
+    type: application
+    urls:
+    - https://github.com/sgaunet/helm-gitlab-backup2s3/releases/download/gitlab-backup2s3-0.6.4/gitlab-backup2s3-0.6.4.tgz
+    version: 0.6.4
+  - apiVersion: v2
     appVersion: 2.3.2
     created: "2025-12-28T20:10:11.519764452Z"
     description: Kubernetes CronJob for GitLab backups to S3-compatible storage
@@ -177,4 +188,4 @@ entries:
     urls:
     - https://github.com/sgaunet/helm-gitlab-backup2s3/releases/download/gitlab-backup2s3-0.1.0/gitlab-backup2s3-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-28T20:10:11.519883335Z"
+generated: "2026-02-22T21:18:50.731217282Z"
