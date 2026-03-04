@@ -3,7 +3,7 @@ name: gitlab-backup2s3
 description: Kubernetes CronJob for GitLab backups to S3-compatible storage
 
 type: application
-version: 0.6.4
-appVersion: "2.3.4"
+version: 0.6.5
+appVersion: "2.4.0"
 
 icon: view-source:https://raw.githubusercontent.com/sgaunet/helmchart-helper/main/ico/helm.ico
