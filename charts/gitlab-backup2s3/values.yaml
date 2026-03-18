@@ -100,4 +100,4 @@ suspend: False
 # -- cronjob restartPolicy
 restartPolicy: "OnFailure"
 # -- cronjob backoffLimit
-backoffLimit: 2
+backoffLimit: 0
