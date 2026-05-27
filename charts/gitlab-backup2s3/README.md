@@ -1,6 +1,6 @@
 # gitlab-backup2s3
 
-![Version: 0.6.5](https://img.shields.io/badge/Version-0.6.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.4.0](https://img.shields.io/badge/AppVersion-2.4.0-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.6.0](https://img.shields.io/badge/AppVersion-2.6.0-informational?style=flat-square)
 
 Kubernetes CronJob for GitLab backups to S3-compatible storage
 
@@ -12,8 +12,11 @@ Kubernetes CronJob for GitLab backups to S3-compatible storage
 | additionalEnvFrom | list | `[]` | additional configmap or secret.  |
 | additionalLabels | object | `{}` | additional deployment labels (will be merged with the default labels) |
 | affinity | object | `{}` |  |
-| backoffLimit | int | `2` | cronjob backoffLimit |
+| backoffLimit | int | `0` | cronjob backoffLimit |
 | concurrencyPolicy | string | `"Forbid"` | cronjob concurrencyPolicy |
+| configuration.AGE_ARMOR | string | `""` | ASCII-armor the encrypted archive (PEM-like text). Default is binary. |
+| configuration.AGE_RECIPIENTS | string | `""` | comma-separated [age](https://age-encryption.org) recipients (public keys: age1..., or ssh-ed25519/ssh-rsa lines). Setting this enables native age encryption of archives before upload (requires gitlab-backup2s3 >= 2.6.0). |
+| configuration.AGE_RECIPIENTS_FILE | string | `""` | alternative to AGE_RECIPIENTS: path to a recipients file mounted into the container (one recipient per line, '#' comments allowed) |
 | configuration.AWS_ACCESS_KEY_ID | string | `""` |  |
 | configuration.AWS_SECRET_ACCESS_KEY | string | `""` | not mandatory if you associate an IAM role to the pod or ec2 |
 | configuration.DEBUGLEVEL | string | `"info"` | info,warn,error or debug |
@@ -22,9 +25,9 @@ Kubernetes CronJob for GitLab backups to S3-compatible storage
 | configuration.GITLABGROUPID | string | `""` | gitlab group id to export (will export all projects in the group) |
 | configuration.GITLABPROJECTID | string | `""` | gitlab projet id to export |
 | configuration.GITLAB_TOKEN | string | `""` | GITLAB_TOKEN is mandatory |
-| configuration.GOCRYPT_KEY | string | `""` | key to encrypt archive ([gocrypt](https://github.com/sgaunet/gocrypt) is used to encrypt archives) |
+| configuration.GOCRYPT_KEY | string | `""` | legacy: key to encrypt archive with [gocrypt](https://github.com/sgaunet/gocrypt). Prefer AGE_RECIPIENTS above for new setups. |
 | configuration.LOCALPATH | string | `""` | if you want to backup to a local path |
-| configuration.POSTBACKUP | string | `""` | if GOCRYPT_KEY is setup, set it to: gocrypt enc \-\-i %INPUTFILE% |
+| configuration.POSTBACKUP | string | `""` | legacy gocrypt hook command. Prefer AGE_RECIPIENTS above for new setups. Example for gocrypt: gocrypt enc \-\-i %INPUTFILE% |
 | configuration.S3BUCKETNAME | string | `""` | Example: mybucket |
 | configuration.S3BUCKETPATH | string | `""` | Example: /my/path |
 | configuration.S3ENDPOINT | string | `""` | Example https://s3.eu-west-3.amazonaws.com or http://localhost:9090 for a local minio instance |

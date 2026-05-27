@@ -52,9 +52,15 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 configuration:
-  # -- key to encrypt archive ([gocrypt](https://github.com/sgaunet/gocrypt) is used to encrypt archives)
+  # -- comma-separated [age](https://age-encryption.org) recipients (public keys: age1..., or ssh-ed25519/ssh-rsa lines). Setting this enables native age encryption of archives before upload (requires gitlab-backup2s3 >= 2.6.0).
+  AGE_RECIPIENTS: ""
+  # -- alternative to AGE_RECIPIENTS: path to a recipients file mounted into the container (one recipient per line, '#' comments allowed)
+  AGE_RECIPIENTS_FILE: ""
+  # -- ASCII-armor the encrypted archive (PEM-like text). Default is binary.
+  AGE_ARMOR: ""
+  # -- legacy: key to encrypt archive with [gocrypt](https://github.com/sgaunet/gocrypt). Prefer AGE_RECIPIENTS above for new setups.
   GOCRYPT_KEY: ""
-  # -- if GOCRYPT_KEY is setup, set it to: gocrypt enc \-\-i %INPUTFILE%
+  # -- legacy gocrypt hook command. Prefer AGE_RECIPIENTS above for new setups. Example for gocrypt: gocrypt enc \-\-i %INPUTFILE%
   POSTBACKUP: ""
   # -- GITLAB_TOKEN is mandatory
   GITLAB_TOKEN: ""
