@@ -57,7 +57,7 @@ configuration:
   # -- alternative to AGE_RECIPIENTS: path to a recipients file mounted into the container (one recipient per line, '#' comments allowed)
   AGE_RECIPIENTS_FILE: ""
   # -- ASCII-armor the encrypted archive (PEM-like text). Default is binary.
-  AGE_ARMOR: ""
+  AGE_ARMOR: "false"
   # -- legacy: key to encrypt archive with [gocrypt](https://github.com/sgaunet/gocrypt). Prefer AGE_RECIPIENTS above for new setups.
   GOCRYPT_KEY: ""
   # -- legacy gocrypt hook command. Prefer AGE_RECIPIENTS above for new setups. Example for gocrypt: gocrypt enc \-\-i %INPUTFILE%
