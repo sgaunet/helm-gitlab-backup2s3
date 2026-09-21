@@ -1,6 +1,6 @@
 # gitlab-backup2s3
 
-![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.6.0](https://img.shields.io/badge/AppVersion-2.6.0-informational?style=flat-square)
+![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.6.1](https://img.shields.io/badge/AppVersion-2.6.1-informational?style=flat-square)
 
 Kubernetes CronJob for GitLab backups to S3-compatible storage
 
@@ -14,7 +14,7 @@ Kubernetes CronJob for GitLab backups to S3-compatible storage
 | affinity | object | `{}` |  |
 | backoffLimit | int | `0` | cronjob backoffLimit |
 | concurrencyPolicy | string | `"Forbid"` | cronjob concurrencyPolicy |
-| configuration.AGE_ARMOR | string | `""` | ASCII-armor the encrypted archive (PEM-like text). Default is binary. |
+| configuration.AGE_ARMOR | string | `"false"` | ASCII-armor the encrypted archive (PEM-like text). Default is binary. |
 | configuration.AGE_RECIPIENTS | string | `""` | comma-separated [age](https://age-encryption.org) recipients (public keys: age1..., or ssh-ed25519/ssh-rsa lines). Setting this enables native age encryption of archives before upload (requires gitlab-backup2s3 >= 2.6.0). |
 | configuration.AGE_RECIPIENTS_FILE | string | `""` | alternative to AGE_RECIPIENTS: path to a recipients file mounted into the container (one recipient per line, '#' comments allowed) |
 | configuration.AWS_ACCESS_KEY_ID | string | `""` |  |
